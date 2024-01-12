@@ -10,4 +10,3 @@ urlpatterns = [
     path('contacts/', views.contacts, name='contacts'), #регистрируем страницу contacts
     path('delivery/', views.delivery, name='delivery')
 ]
-
