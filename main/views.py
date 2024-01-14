@@ -1,12 +1,19 @@
+
 from django.http import HttpResponse
 from django.shortcuts import render
+
+from goods.models import Categories
 
 # Create your views here.
 
 def index(request): #request содержит данные о запросе(инф о пользователе, куки и тд)
+    categories = Categories.objects.all()
+    #создаем переменную и записываем все объекты из таблицы (категории)
+    
     context = {
         'title': 'Home - Главная',
         'content': 'Магазин мебели Home',
+        'categories': categories #передаем переменную categories через контекст
 
     }
     return render(request, 'main/index.html', context)
