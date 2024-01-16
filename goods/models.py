@@ -36,3 +36,12 @@ class Products(models.Model):
         verbose_name_plural = 'Товары'
     def __str__(self):
         return f'{self.name} Количество - {self.quntity}'
+    
+    def display_id (self):
+        return f'{self.id:05}' # 05 - добавить нули, до 5 знаков (прим id 00007)
+    
+    def sell_price (self):
+        if self.discount:
+            return round(self.price - (self.price * self.discount / 100), 2)
+        return self.price #если скидки нет вернет обычную цену
+    

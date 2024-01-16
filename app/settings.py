@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
-from django.conf.global_settings import STATICFILES_DIRS
+from django.conf.global_settings import MEDIA_ROOT, MEDIA_URL, STATICFILES_DIRS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'debug_toolbar',    
+    "debug_toolbar",    
 
     'main', #сразу регестрируем каждое созданное приложение приложение
     'goods', 
@@ -129,6 +129,10 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR/'static'
 ]
+
+MEDIA_URL = 'media/'
+
+MEDIA_ROOT =  BASE_DIR / 'media' #указываем медия файлы
 
 INTERNAL_IPS = [
     # ...
