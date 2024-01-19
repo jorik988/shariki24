@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 {% load static %}
+{% load goods_tags %}
 
 {% block content %}
     <!-- Контент на странице -->
@@ -55,7 +56,7 @@
                         <a href="{% url "goods:product" product.slug %}">
                             <p class="card-title">{{ product.name }}</p>
                         </a>
-                        <p class="card-text">{{ product.description|truncatechars:47 }}</p> <!--truncatechars - сокращать описание по количеству символов-->
+                        <p class="card-text">{{ product.description|truncatechars:42 }}</p> <!--truncatechars - сокращать описание по количеству символов-->
                         <p class="product_id">id: {{product.display_id}}</p> <!--вызываем наш метод display_id из goods/models-->
                         <div class="d-flex justify-content-between">
                             
@@ -90,7 +91,7 @@
         <ul class="pagination justify-content-center my-4">
             <div class="custom-shadow d-flex">
                 <li class="page-item {% if not goods.has_previous %}disabled{% endif %}"> 
-                    <a class="page-link" href="{% if goods.has_previous %} ?page={{ goods.previous_page_number }}
+                    <a class="page-link" href="{% if goods.has_previous %} ?{% change_params page=goods.previous_page_number %}
                     {% else %}#{% endif %}">Назад</a>            
                 </li>
                 
@@ -98,14 +99,14 @@
                 {% for page in goods.paginator.page_range %} <!--page_range метод пагинатора-->
                     {% if page >= goods.number|add:-2 and page <= goods.number|add:2 %}
                         <li class="page-item {% if goods.number == page %}active{% endif %}">
-                            <a class="page-link" href="?page={{page}}">{{page}}</a>
+                            <a class="page-link" href="?{% change_params page=page %}">{{page}}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
 
 
                 <li class="page-item {% if not goods.has_next %}disabled{% endif %}">
-                    <a class="page-link" href="{% if goods.has_next %} ?page={{ goods.next_page_number }}
+                    <a class="page-link" href="{% if goods.has_next %} ?{% change_params page=goods.next_page_number %}
                     {% else %}#{% endif %}">Вперед</a>
                 </li>
             </div>
