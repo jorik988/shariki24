@@ -90,7 +90,7 @@
                         
                         {% tag_categories as categories %} <!--вызываем тег из файла goods_tags (загружен вверху) и даем имя categories-->
                         {% for category in categories %} <!--проходим циклом по categories-->
-                            <li><a class="dropdown-item text-white" href="{% url "goods:catalog" %}">{{category.name}}</a></li>
+                            <li><a class="dropdown-item text-white" href="{% url "catalog:index" category.slug %}">{{category.name}}</a></li>
                         {% endfor %}{% comment %} КАТЕГОРИИ {% endcomment %}
                     
                     </ul>
