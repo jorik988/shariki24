@@ -1,7 +1,7 @@
 
 from django.urls import path
 
-from goods import views  #импорт views из main для регистрации функций
+from goods import views  #импорт views из goods для регистрации функций
 
 app_name = 'goods'
 urlpatterns = [
