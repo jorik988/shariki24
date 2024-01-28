@@ -8,7 +8,7 @@ class Categories(models.Model): # создаем таблицу для БД
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
     class Meta:
         db_table = 'category' # изменяем название таблицы в БД
-        verbose_name = 'Категория' # изменяем название таблицы в админ панели
+        verbose_name: str = 'Категория' # изменяем название таблицы в админ панели
         verbose_name_plural = 'Категории'
     def __str__(self):
         return f'{self.name}'
