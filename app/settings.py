@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     "debug_toolbar",    
 
     'main', #сразу регестрируем каждое созданное приложение приложение
-    'goods', 
+    'goods',
     'users', 
+    'carts', 
 ]
 
 MIDDLEWARE = [

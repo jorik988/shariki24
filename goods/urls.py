@@ -1,4 +1,3 @@
-
 from django.urls import path
 
 from goods import views  #импорт views из goods для регистрации функций
