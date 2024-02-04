@@ -18,10 +18,13 @@ def login(request):
             if user: #если данные совпали то логинемся
                 auth.login (request, user)
                 messages.success(request, f"{user.username}, вы успешно вошли в аккаунт!")
-                if request.POST.get('next', None):
-                    return HttpResponseRedirect (request.POST.get('next')) #если есть ключ next перенаправлять на страницу из ключа
-                else:
-                    return HttpResponseRedirect (reverse('main:index')) #иначе на главную
+                
+                redirect_page = request.POST.get('next', None)
+                if redirect_page and redirect_page != reverse('user:logout'):#если есть ключ next перенаправлять на страницу из ключа страница не logout
+                    return HttpResponseRedirect(request.POST.get('next'))
+                    
+                return HttpResponseRedirect(reverse('main:index'))#иначе на главную
+               
     else:   
         form = UserLoginForm()  #иначе (если был Get) просто открыть страницу авторицаии
 
