@@ -4,6 +4,7 @@ from django.contrib import auth, messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from carts.models import Cart
 
 from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm
 
@@ -15,9 +16,18 @@ def login(request):
             password = request.POST['password']
             user = auth.authenticate(username=username, password=password)
             #проверяем что пользователь есть в базе
+
+            session_key = request.session.session_key
+            #пока пользователь не залогинен создаем переменную с ключом
+            #чтобы не потерять товары из анонимной корзины
+
             if user: #если данные совпали то логинемся
                 auth.login (request, user)
                 messages.success(request, f"{user.username}, вы успешно вошли в аккаунт!")
+
+                if session_key:
+                    Cart.objects.filter(session_key=session_key).update(user=user)
+                    #если есть ключ сессии обновляем корзину пользователя после логина
                 
                 redirect_page = request.POST.get('next', None)
                 if redirect_page and redirect_page != reverse('user:logout'):#если есть ключ next перенаправлять на страницу из ключа страница не logout
@@ -41,8 +51,18 @@ def registration(request):
         form = UserRegistrationForm(data=request. POST)
         if form.is_valid():
             form.save()
+
+            session_key = request.session.session_key
+            #пока пользователь не залогинен создаем переменную с ключом
+            #чтобы не потерять товары из анонимной корзины
+
             user =form.instance #берем данные из формы чтобы сразу залогиниться
             auth.login(request, user) #логинимся сразу после регистрации
+
+            if session_key:
+                    Cart.objects.filter(session_key=session_key).update(user=user)
+                    #если есть ключ сессии обновляем корзину пользователя после логина
+
             messages.success(request, f"{user.username}, вы успешно зарегистрировались!")
             return HttpResponseRedirect (reverse('main:index'))
     else:   
