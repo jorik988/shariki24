@@ -1,6 +1,7 @@
 from email.policy import default
 from tabnanny import verbose
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Categories(models.Model): # создаем таблицу для БД
@@ -36,7 +37,11 @@ class Products(models.Model):
         verbose_name_plural = 'Товары'
         ordering = ("id",) #сортировка по умолчанию, чтоб не ругался пагинатор
     def __str__(self):
-        return f'{self.name} Количество - {self.quntity}'
+        return f'{self.name} Количество - {self.quantity}'
+    
+    def get_absolute_url(self):
+        return reverse("catalog:product", kwargs={"product_slug": self.slug})
+    # получаем url текущего продукта, в админ панели повится кнопка смотреть на сайте
     
     def display_id (self):
         return f'{self.id:05}' # 05 - добавить нули, до 5 знаков (прим id 00007)
