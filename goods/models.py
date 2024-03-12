@@ -26,7 +26,7 @@ class Products(models.Model):
     image = models.ImageField(upload_to='goods_images', blank=True, null=True, verbose_name='Изображение')
     price = models.DecimalField(default=0.00, decimal_places=2, max_digits=7, blank=True, null=True, verbose_name='Цена')
     discount = models.DecimalField(default=0.00, decimal_places=2, max_digits=4, blank=True, null=True, verbose_name='Скидка в %')
-    quantity = models.PositiveIntegerField(default=0, blank=True, null=True, verbose_name='Количество')
+    quantity = models.PositiveIntegerField(default=0, verbose_name='Количество')
     category = models.ForeignKey(to=Categories, on_delete=models.PROTECT, verbose_name = 'Категория') #ForeignKey связывает товар с категорией
     #PROTECT запрет удаления категории пока в ней есть товары. 
     #CASCADE товары удаляются вместе с категорией
