@@ -39,7 +39,8 @@ class Products(models.Model):
     price = models.DecimalField(default=0, decimal_places=0, max_digits=7, blank=True, null=True, verbose_name='Цена')
     discount = models.DecimalField(default=0.00, decimal_places=2, max_digits=4, blank=True, null=True, verbose_name='Скидка в %')
     quantity = models.PositiveIntegerField(default=999, verbose_name='Количество')
-    category = models.ForeignKey(to=Categories, on_delete=models.PROTECT, verbose_name = 'Категория') #ForeignKey связывает товар с категорией
+    #category = models.ForeignKey(to=Categories, on_delete=models.PROTECT, verbose_name = 'Категория') #ForeignKey связывает товар с категорией
+    category = models.ManyToManyField(to=Categories, verbose_name='Категории')
     base_products = models.ManyToManyField(to=BaseProducts, through='SetProduct')
     #PROTECT запрет удаления категории пока в ней есть товары. 
     #CASCADE товары удаляются вместе с категорией

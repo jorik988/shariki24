@@ -1,5 +1,5 @@
 from django.contrib import admin
-from goods.forms import SetProductInline
+from goods.forms import CategoriesInline, SetProductInline
 from goods.models import BaseProducts, Categories, Products
 
 #admin.site.register(Categories) Простой способ регистрации таблицы в админ панели
@@ -23,7 +23,8 @@ class ProductsAdmin(admin.ModelAdmin):
     list_display = ['name', 'quantity', 'price', 'discount', 'image',] #указываем поля для отображения в админ панели
     list_editable = ['quantity', 'discount',] #поля с возможностью быстрого изменения
     search_fields = ['name', 'description', 'id'] #добавляем поиск 
-    list_filter = ['quantity', 'price', 'discount', 'category'] #фильтрация
+    list_filter = ['quantity', 'price', 'discount','category'] #фильтрация
+    filter_horizontal = ['category']  # Позволяет выбирать несколько категорий
     inlines = [SetProductInline]
     fields = [
         "name",
