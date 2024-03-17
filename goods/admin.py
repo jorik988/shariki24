@@ -20,7 +20,7 @@ class CategoriesAdmin(admin.ModelAdmin):
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)}
-    list_display = ['name', 'quantity', 'price', 'discount', 'image',] #указываем поля для отображения в админ панели
+    list_display = ['id', 'name', 'quantity', 'price', 'discount', 'image',] #указываем поля для отображения в админ панели
     list_editable = ['quantity', 'discount',] #поля с возможностью быстрого изменения
     search_fields = ['name', 'description', 'id'] #добавляем поиск 
     list_filter = ['quantity', 'price', 'discount','category'] #фильтрация
@@ -34,4 +34,6 @@ class ProductsAdmin(admin.ModelAdmin):
         "image",
         #("price", "discount"),
         "quantity",
-    ] #отображение продукта
+    ] 
+    class Media:
+        js = ('goods/prepopulate_name.js',)  # Для автозаполнения name

@@ -1,7 +1,9 @@
 from django.core.paginator import Paginator
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_list_or_404, render
 from goods.models import Products
-from goods.utils import q_search
+from goods.utils import  q_search
+
 # Create your views here.
 
 
@@ -25,7 +27,7 @@ def catalog(request, category_slug=None):
         goods = goods.order_by(order_by) #если есть order_by и не выбран пункт по умолчанию - добавить фильтр (order_by)
     
 
-    paginator = Paginator(goods, 3) #отображать по 3 товара из переменной goods
+    paginator = Paginator(goods, 25) #отображать по 25 товаров из переменной goods
     current_page = paginator.page(int(page))
 
     context = {
@@ -38,9 +40,17 @@ def catalog(request, category_slug=None):
 def product(request, product_slug):
     
     product = Products.objects.get(slug=product_slug)
-    
+    base_products = product.base_products.all()
     context = {
         "title": "Home - Товар",
         "product": product,
+        "base_products": base_products,
+        
+        
     }
     return render(request, "goods/product.html", context=context)
+
+
+# def get_product_id(request):
+#     product_id = get_max_id()
+#     return HttpResponse(str(product_id))

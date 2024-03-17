@@ -32,10 +32,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <a class="dropdown-item mx-1 text-white" href="{% url "main:delivery" %}">Доставка и оплата</a>
-                        <a class="dropdown-item mx-1 text-white" href="{% url "main:contacts" %}">Контактная информация</a>
-                        <a class="dropdown-item mx-1 text-white" href="{% url "main:about" %}">О нас</a>
-                        {% comment %}<li class="nav-item dropdown ">
+                        <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Информация
@@ -49,7 +46,7 @@
                         <li class="nav-item">
                             <a class="nav-link  text-white" href="{% url "users:users_cart" %}">Корзина</a>
                         </li>
-                         {% if not user.is_authenticated %}
+                        {% if not user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link  text-white" href="{% url "users:login" %}">Войти</a>
                         </li>
@@ -72,7 +69,7 @@
                                 <li><a class="dropdown-item  text-white" href="{% url "users:logout" %}">Выйти</a></li>
                             </ul>
                         </li>
-                        {% endif %} {% endcomment %}
+                        {% endif %}
                     </ul>
                     <form class="d-flex" role="search" method="get" action="{% url "catalog:search"%}"> 
                         <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
@@ -105,9 +102,9 @@
                 </div>
                 <!-- Значек корзины, вызывает модальное окно -->
                     <!-- перенесли -->
-                    {% comment %} {% block modal_cart %}
+                    {% block modal_cart %}
                         
-                    {% endblock modal_cart %} {% endcomment %}
+                    {% endblock modal_cart %}
                 <!-- Закончилась разметка модального окна -->
             </div>
         </div>

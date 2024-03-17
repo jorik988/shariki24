@@ -1,7 +1,7 @@
 from django.db import models
 from django.dispatch import receiver
 from django.urls import reverse
-
+from django.db.models.signals import post_save
 
 
 # Create your models here.
@@ -28,6 +28,11 @@ class BaseProducts(models.Model):
         verbose_name_plural = 'Базовые товары'
     def __str__(self):
         return f'{self.name}'
+    
+    def save(self, *args, **kwargs):
+        super(BaseProducts, self).save(*args, **kwargs)
+        for set_product in self.setproduct_set.all():
+            set_product.product.save()
     
 
 
@@ -66,18 +71,26 @@ class Products(models.Model):
         return self.price #если скидки нет вернет обычную цену
 
     def save(self, *args, **kwargs):
-        super(Products, self).save(*args, **kwargs)  # Сначала сохраняем экземпляр Products
+        super(Products, self).save(*args, **kwargs)  # Сначала сохраняем экземпляр Products(или ошибка)
+        
         total_price = sum(set_product.base_product.price * set_product.quantity for set_product in self.setproduct_set.all())
         self.price = total_price
+            # Обновляем цена по количеству товаров в наборе
+
+        if self.name == "Набор №":
+            self.name = f"Набор №{self.id}"
+
+        # all_set_products = SetProduct.objects.filter(product=self)
+        #     # Получаем все наборы товаров для данного товара Products
+        # products_list = [f'{sp.base_product.name} ({sp.quantity} шт.)' for sp in all_set_products]
+        #     # Собираем список всех базовых товаров и их количества
+        # new_description = ', '.join(products_list)
+        #     # Формируем обновленное описание с списком базовых товаров
+        # self.description = new_description
+        #     # Обновляем описание товара Products
         super(Products, self).save(*args, **kwargs)
-        
 
 
-# @receiver(m2m_changed, sender=Products.base_products.through)
-# def update_price_on_base_products_change(sender, instance, action, **kwargs):
-#     if action == 'post_add' or action == 'post_remove' or action == 'post_clear':
-#         instance.save()
-# Для изменения цены сразу при добавлении основных товаров
 class SetProduct(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
     base_product = models.ForeignKey(BaseProducts, on_delete=models.CASCADE)
@@ -85,6 +98,6 @@ class SetProduct(models.Model):
         
     def save(self, *args, **kwargs):
         super(SetProduct, self).save(*args, **kwargs)
-        # После сохранения SetProduct вызываем пересчет цены у соответствующего товара
+        # После сохранения SetProduct вызываем пересчет цены у соответствующего товара  
         self.product.save()
 

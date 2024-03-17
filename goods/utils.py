@@ -1,6 +1,5 @@
-from django.db.models import Q  # for search
 from goods.models import Products
-from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector, SearchHeadline
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
 
 
 def q_search(query):
@@ -39,3 +38,4 @@ def q_search(query):
     #     q_objects |=  Q(description__icontains=token) #наполняем q_object q-объектами по ключевым словам из описания
     #     q_objects |=  Q(name__icontains=token) #наполняем q_object q-объектами по ключевым словам из названия
     # return Products.objects.filter(q_objects) #фильтруем результат
+
