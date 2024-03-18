@@ -4,3 +4,4 @@ document.addEventListener("DOMContentLoaded", function() {
         nameField.value = "Набор №";  // Здесь укажите значение, которым хотите предзаполнить поле name
     }
 });
+//Автозаполнение name

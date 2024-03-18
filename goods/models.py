@@ -1,7 +1,8 @@
 from django.db import models
-from django.dispatch import receiver
+from slugify import slugify
 from django.urls import reverse
 from django.db.models.signals import post_save
+
 
 
 # Create your models here.
@@ -79,7 +80,12 @@ class Products(models.Model):
 
         if self.name == "Набор №":
             self.name = f"Набор №{self.id}"
+            super(Products, self).save(*args, **kwargs)
+        self.slug = slugify(self.name)
+        #Заполняем имя по Id, затем заполняем slug
 
+
+        super(Products, self).save(*args, **kwargs)
         # all_set_products = SetProduct.objects.filter(product=self)
         #     # Получаем все наборы товаров для данного товара Products
         # products_list = [f'{sp.base_product.name} ({sp.quantity} шт.)' for sp in all_set_products]
@@ -88,7 +94,7 @@ class Products(models.Model):
         #     # Формируем обновленное описание с списком базовых товаров
         # self.description = new_description
         #     # Обновляем описание товара Products
-        super(Products, self).save(*args, **kwargs)
+        
 
 
 class SetProduct(models.Model):
