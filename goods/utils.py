@@ -1,5 +1,5 @@
 from goods.models import Products
-from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector, SearchHeadline
 
 
 def q_search(query):

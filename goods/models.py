@@ -1,7 +1,6 @@
 from django.db import models
-from slugify import slugify
 from django.urls import reverse
-from django.db.models.signals import post_save
+from slugify import slugify
 
 
 
@@ -94,7 +93,6 @@ class Products(models.Model):
         #     # Формируем обновленное описание с списком базовых товаров
         # self.description = new_description
         #     # Обновляем описание товара Products
-        
 
 
 class SetProduct(models.Model):

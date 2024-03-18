@@ -6,39 +6,49 @@
 {% endblock modal_cart %}
 
 {% block content %}
-    <div class="container mt-5">
-        <div class="card mb-4 custom-shadow">
-            <div class="row">
+<div class="container mt-5">
+    <div class="card mb-4 custom-shadow">
+        <div class="row">
                 <!-- Миниатюры -->
-                <div class="col-md-4">
+                <div class="col-md-5">
                     {% if product.image %}
                         <img src="{{product.image.url}}"
-                            class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imageModal1">
+                        class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imageModal1">
                     {% else %}
                         <img src="{% static "deps/images/Not found image.png" %}"
                             class="card-img-top" alt="{{product.name}}">        
                     {% endif %}
                 </div>
-                <div class="col-md-4 ">
-                    <p class="product_id mt-3">id: {{ product.display_id }}</p>
+                <div class="col-md-4 mt-4 ms-3">
+                    
+                    <h5 class="card-title">{{product.name}}</h5>
+                    {% if product.discount %}
+                        <p><s>{{ product.price }}</s> ₽</p>
+                        <p><strong>Цена: </strong><strong class="border border-dark bg-warning px-1 rounded-2">{{product.sell_price}} ₽</strong></p>
+                    {% else %}
+                        <p class="card-text">Цена: <strong>{{product.sell_price}} ₽</strong></p>
+                    {% endif %}
+                    <p class="mb-0">Для заказа позвоните или отправьте сообщение на номер:</p>
+                    <strong >8(983)467-91-45</strong>
+                    <p class="mt-0">и скажите номер интересующего товара.</p>
                 </div>
                 <!-- Увеличить изображение в модальном окне -->
                 <div class="modal fade" id="imageModal1" tabindex="-1"
-                    aria-labelledby="imageModal1Label" aria-hidden="true">
+                aria-labelledby="imageModal1Label" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="imageModal1Label">Изображение 1</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Закрыть"></button>
+                                aria-label="Закрыть"></button>
                             </div>
                             <div class="modal-body">
                                 {% if product.image %}
-                                    <img src="{{product.image.url}}"
-                                        class="img-fluid" alt="{{product.name}}">
+                                <img src="{{product.image.url}}"
+                                class="img-fluid" alt="{{product.name}}">
                                 {% else %}
-                                    <img src="{% static "deps/images/Not found image.png" %}"
-                                        class="img-fluid" alt="{{product.name}}">
+                                <img src="{% static "deps/images/Not found image.png" %}"
+                                class="img-fluid" alt="{{product.name}}">
                                 {% endif %}
                             </div>
                         </div>
@@ -47,8 +57,13 @@
             </div>
             <!-- Описание товара -->
             <div class="card-body">
-                <p class="card-text">Цена: <strong>{{product.sell_price}} ₽</strong></p>
-                <h5 class="card-title">{{product.name}}</h5>
+                {% comment %} {% if product.discount %}
+                    <p><s>{{ product.price }}</s> ₽</p>
+                    <p><strong>Цена: </strong><strong class="border border-dark bg-warning px-1 rounded-2">{{product.sell_price}} ₽</strong></p>
+                {% else %}
+                    <p class="card-text">Цена: <strong >{{product.sell_price}} ₽</strong></p>
+                {% endif %}
+                <h5 class="card-title">{{product.name}}</h5> {% endcomment %}
                 <p class="card-text">
                     {{product.description}}
                     {% if product.price > 500 %}
@@ -60,6 +75,7 @@
                         </ul>
                     {% endif %}
                 </p>
+                <p class="product_id mt-3">id: {{ product.display_id }}</p>
                 
                 {% comment %} <a href="{% url "cart:cart_add" %}" class="btn btn-dark add-to-cart"
                 data-product-id="{{product.id}}">
