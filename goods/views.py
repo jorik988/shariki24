@@ -32,7 +32,8 @@ def catalog(request, category_slug=None):
     context = {
         "title": "Home - Каталог",
         "goods": current_page,
-        "slug_url": category_slug #для пагинации в catalog.html
+        "slug_url": category_slug, #для пагинации в catalog.html
+        "is_category_page": True #для отображения нужных элементов только на странице каталога
     }
     return render(request, "goods/catalog.html", context)
 
