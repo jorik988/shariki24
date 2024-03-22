@@ -14,7 +14,7 @@ class Categories(models.Model): # создаем таблицу для БД
         verbose_name_plural = 'Категории'
     def __str__(self):
         return f'{self.name}'
-    #переопределяем метод что бы изменить название элементов в таблицах в админ панели
+    # переопределяем метод что бы изменить название элементов в таблицах в админ панели
 
 class BaseProducts(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название') # поля таблицы CharField тип для текста
