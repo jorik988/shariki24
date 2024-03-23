@@ -18,17 +18,6 @@ from django.conf.global_settings import AUTH_USER_MODEL, MEDIA_ROOT, MEDIA_URL, 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(6o60$3da%1!d*a3+m1i2kdo!i@g-iql$79cghfo5)g+bw$4bh'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -83,20 +72,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'app.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'home',
-        'USER': 'home',
-        'PASSWORD': 'home',
-        'HOST': 'localhost',
-        'PORT': '5432',
-        
-    }
-}
 
 
 # Password validation
@@ -135,10 +111,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR/'static'
-]
-
 MEDIA_URL = 'media/'
 
 MEDIA_ROOT =  BASE_DIR / 'media' #указываем медия файлы
@@ -157,3 +129,8 @@ AUTH_USER_MODEL = 'users.User'
 #указываем что мы переопрелелили стандартную таблицу AUTH_USER, иначе django создаст свою
 LOGIN_URL = '/user/login/'
 #указываем URL login
+
+try:
+    from .local_settings import *
+except ImportError:
+    from .prod_settings import *
