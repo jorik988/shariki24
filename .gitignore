@@ -8,5 +8,5 @@ __pycache__/
 #django stuff
 db.sqlite3
 media/
-prod_settings.py
 local_settings.py
+migrations/
