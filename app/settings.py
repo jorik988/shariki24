@@ -133,6 +133,6 @@ LOGIN_URL = '/user/login/'
 #указываем URL login
 
 try:
-    from .local_settings import *
+    from app.local_settings import *
 except ImportError:
-    from .prod_settings import *
+    from app.prod_settings import *
