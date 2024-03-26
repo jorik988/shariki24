@@ -95,12 +95,12 @@
                             
                         {% comment %} <p class="product_id">id: {{product.display_id}}</p> <!--вызываем наш метод display_id из goods/models--> {% endcomment %}
                         
-                        <div class="d-flex justify-content-between align-items-baseline">
+                        <div class="d-flex flex-wrap justify-content-between align-items-baseline">
                             
                             {% if product.discount %}
                                 <p class=""><s>{{ product.price }}</s> ₽</p>
                                 <p><strong class="border border-dark bg-warning px-1 rounded-2">{{product.sell_price}} ₽</strong></p>
-                                <span class="badge bg-warning text-dark">Скидка {{product.discount}} %</span>
+                                <span class="badge bg-warning text-dark">Скидка{{product.discount}} %</span>
                             {% else %}
                                 <p><strong class="border border-dark  px-2 rounded-2">{{ product.price }} ₽</strong></p>
                             {% endif %}
@@ -113,9 +113,11 @@
                             </a> 
                             Иконка добавления в корзину
                             {% endcomment %}
-                            <a href="{% url "goods:product" product.slug %}">
-                                <button type="button" class="btn btn-dark mr-2">Подробнее</button>
-                            </a>
+                            <div>
+                                <a href="{% url "goods:product" product.slug %}">
+                                    <button type="button" class="btn btn-dark mr-2">Подробнее</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -161,7 +163,7 @@
 {% block futer %}
     <footer class="py-4 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Home Python Hub Studio 2023</p>
+            <p class="m-0 text-center text-white">Доставка воздушных шаров</p>
         </div>
     </footer>
 {% endblock futer %}
