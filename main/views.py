@@ -9,15 +9,15 @@ from goods.models import Categories
 def index(request): #request содержит данные о запросе(инф о пользователе, куки и тд)
        
     context = {
-        'title': 'Home - Главная',
-        'content': 'Магазин мебели Home',
+        'title': 'ШарикиНаДом - Главная',
+        'content': 'Магазин воздушных шаров ШарикиНаДом.РФ',
     }
     return render(request, 'main/index.html', context)
 # Ф-я представления или контроллер
 
 def about(request):
     context = {
-        'title': 'Home - О нас',
+        'title': 'ШарикиНаДом - О нас',
         'content': 'Информация о нас',
         'text_on_page': 'Здесь будет информация о нас',
     }
@@ -25,7 +25,7 @@ def about(request):
 
 def contacts(request):
     context = {
-        'title': 'Home - Контакты',
+        'title': 'ШарикиНаДом - Контакты',
         'content': 'Контакты',
         'text_on_page': 'Здесь будет контактная информация.',
     }
@@ -33,7 +33,7 @@ def contacts(request):
 
 def delivery(request):
     context = {
-        'title': 'Home - Доставка',
+        'title': 'ШарикиНаДом - Доставка',
         'content': 'Доставка',
         'text_on_page': 'Здесь будет информация о доставке',
     }
