@@ -100,7 +100,7 @@
                             {% if product.discount %}
                                 <p class=""><s>{{ product.price }}</s> ₽</p>
                                 <p><strong class="border border-dark bg-warning px-1 rounded-2">{{product.sell_price}} ₽</strong></p>
-                                <span class="badge bg-warning text-dark">Скидка{{product.discount}} %</span>
+                                <span class="badge bg-warning text-dark">Скидка {{product.discount}} %</span>
                             {% else %}
                                 <p><strong class="border border-dark  px-2 rounded-2">{{ product.price }} ₽</strong></p>
                             {% endif %}
