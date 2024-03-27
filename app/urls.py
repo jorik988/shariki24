@@ -15,12 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 
 from app import settings
 from django.conf.urls.static import static
 
+from django.views.generic import RedirectView
 urlpatterns = [
+    
+
+    # Перенаправление с главной страницы на категорию "наборы шаров"
+    path('', RedirectView.as_view(url='/catalog/nabory-sharov/', permanent=True)),
+    
+
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),
     path('catalog/', include('goods.urls', namespace='catalog')),

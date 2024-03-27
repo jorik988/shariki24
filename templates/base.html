@@ -21,6 +21,16 @@
 </head>
 
 <body>
+    <!-- Фон для смартфона (параметры в my_css) -->
+    <div class="background-image-container d-block d-md-none">
+        <img src="{% static "\deps\images\bg-image-17.jpg" %}" class="img-fluid" alt="Responsive background">
+    </div>
+    <!-- Фон для ПК/планшета (параметры в my_css) -->
+    <div class="background-image-container d-none d-md-block">
+        <img src="{% static "\deps\images\bg-image-18.jpg" %}" class="img-fluid" alt="Responsive background">
+    </div>
+  
+  <!-- Остальной контент страницы -->
     <header>
         <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
             <div class="container">
@@ -87,7 +97,7 @@
             <!-- Каталог и корзина с фиксированным расположением на странице -->
             <div class="d-flex mb-2 mt-1 position-absolute z-3 d-block d-lg-none"><!-- Smartphone -->
                 <!-- Каталог -->
-                <div class="dropdown  me-3">
+                <div class="dropdown me-3">
                     <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Каталог
@@ -104,8 +114,8 @@
                     </ul>
                 </div>
                 <!-- Форма фильтров -->
-                {% comment %} {% if is_category_page %} {% endcomment %}
-                {% if request.path == '/catalog/all/' %}
+                {% if is_category_page %}
+                {% comment %} {% if request.path == '/catalog/all/' %} {% endcomment %}
                     <div class="dropdown mb-2">
                         <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -172,8 +182,8 @@
                     </ul>
                 </div>
                 <!-- Форма фильтров -->
-                {% comment %} {% if is_category_page %} {% endcomment %}
-                {% if request.path == '/catalog/all/' %}
+                {% if is_category_page %}
+                {% comment %} {% if request.path == '/catalog/all/' %} {% endcomment %}
                     <div class="dropdown mb-2">
                         <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -228,7 +238,7 @@
                 <div class="col-lg-2">
                     <!-- Пустой блок на Ваше усмотрение -->
                 </div>
-                <div class="col-lg-10 mt-2">
+                <div class="col-lg-10 mt-3">
                     <!-- Контент на странице -->
                     {% include "includes/notifications.html" %}
 

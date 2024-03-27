@@ -1,11 +1,24 @@
-body {
+
+/* body {
   background-image: url("../images/bg-image.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
   background-size: cover;
   height: 100%;
+} */
+
+.background-image-container img {
+  position: fixed; /* Фиксированное положение, чтобы изображение оставалось на месте при прокрутке */
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  z-index: -1; /* Устанавливаем изображение за всеми другими элементами */
 }
+
 
 .dropdown-toggle::after {
   content: none;
