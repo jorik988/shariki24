@@ -43,7 +43,7 @@ def product(request, product_slug):
     product = Products.objects.get(slug=product_slug)
     base_products = product.base_products.all()
     context = {
-        "title": "Home - Товар",
+        "title": "33шарика.рф - Товар",
         "product": product,
         "base_products": base_products,
         
