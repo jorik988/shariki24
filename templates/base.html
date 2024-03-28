@@ -19,15 +19,10 @@
     <link rel="manifest" href="{% static "deps/favicon/site.webmanifest" %}">
     <title>{{ title }}</title>
     <!--превью whatsapp-->
-    {% if product.image.url %}
-        <meta property="og:title" content="{{product.name}}"/>
-        <meta property="og:description" content="Доставка воздушных шаров по г.Красноярску" />
-        <meta property="og:image" content="https://33шарика.рф{{product.image.url}}"/>
-    {% else %}
-        <meta property="og:title" content={{title}}/>
-        <meta property="og:description" content="Доставка воздушных шаров по г.Красноярску" />
-        <meta property="og:image" content="https://33шарика.рф/media/goods_images/set1_PVfFktO.jpg"/>
-    {% endif %}
+    <meta property="og:title" content="{{product.name}}"/>
+    <meta property="og:description" content="Доставка воздушных шаров по г.Красноярску"/>
+    <meta property="og:image" content="https://33шарика.рф{{product.image.url}}"/>
+    
 </head>
 
 <body>
