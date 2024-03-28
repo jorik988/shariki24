@@ -51,14 +51,18 @@
         
 
         {% if request.GET.q %} <!--8:55-->
-            <h3 class="mt-4">Результаты поиска по запросу: {{ request.GET.q }}</h3>
+            <h3 class="mt-4">Результаты поиска по запросу: <strong>{{ request.GET.q }}</strong></h3>
             {% if not goods %}
                 <link rel="stylesheet" href="{% static "deps/css/my_footer_css.css" %}">
-                <h2 class="mt-4">По запросу ничего не найдено</h2>
+                <h2 class="mt-4">К сожалению ничего не найдено.</h2>
             {% endif %}
         {% endif %}
-
-         {% for product in goods %} <!--проходим циклом по списку из goods.views->context:goods -->
+        {% if not goods %}
+            <link rel="stylesheet" href="{% static "deps/css/my_footer_css.css" %}">
+            <h2 class="mt-4">К сожалению ничего не найдено.</h2>
+            {% endif %}
+        {% for product in goods %} <!--проходим циклом по списку из goods.views->context:goods -->
+            
             <!-- Карта товара -->
             <div class="col-lg-4 py-lg-4 px-lg-3 col-md-6 p-md-3 col-sm-6 col-6 py-3 px-1 ">
                 <div class="card border-primary rounded custom-shadow">

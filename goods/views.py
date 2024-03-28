@@ -14,12 +14,13 @@ def catalog(request, category_slug=None):
     query = request.GET.get('q', None)
     #ловим запросы из url адреса.
     
+    goods = Products.objects.all()   
     if category_slug == 'all':
-        goods = Products.objects.all()
+        pass
     elif query:
         goods = q_search(query)
     else:
-        goods = get_list_or_404(Products.objects.filter(category__slug=category_slug)) ## get_list_or_404 - стр404 если категория пуста
+        goods = goods.filter(category__slug=category_slug)
     if on_sale: #скидка
         goods = goods.filter(discount__gt=0) #если есть on_sale добавить фильтр (discount больше чем 0)
     if order_by and order_by!='default': #сортировка

@@ -4,7 +4,6 @@ from slugify import slugify
 
 
 
-# Create your models here.
 class Categories(models.Model): # создаем таблицу для БД
     name = models.CharField(max_length=150, unique=True, verbose_name='Название') # поля таблицы CharField тип для текста
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
@@ -82,17 +81,7 @@ class Products(models.Model):
             super(Products, self).save(*args, **kwargs)
         self.slug = slugify(self.name)
         #Заполняем имя по Id, затем заполняем slug
-
-
         super(Products, self).save(*args, **kwargs)
-        # all_set_products = SetProduct.objects.filter(product=self)
-        #     # Получаем все наборы товаров для данного товара Products
-        # products_list = [f'{sp.base_product.name} ({sp.quantity} шт.)' for sp in all_set_products]
-        #     # Собираем список всех базовых товаров и их количества
-        # new_description = ', '.join(products_list)
-        #     # Формируем обновленное описание с списком базовых товаров
-        # self.description = new_description
-        #     # Обновляем описание товара Products
 
 
 class SetProduct(models.Model):
