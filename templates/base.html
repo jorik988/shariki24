@@ -13,7 +13,7 @@
     <!-- Стиль footer-a для главной страницы -->
     {% block css_footer_index %}{% endblock css_footer_index %}
     <!-- Favicons for different platforms -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static "deps/favicon/apple-touch-icon.png" %}">
+    {% comment %} <link rel="apple-touch-icon" sizes="180x180" href="{% static "deps/favicon/apple-touch-icon.png" %}"> {% endcomment %}
     <link rel="icon" type="image/png" sizes="32x32" href="{% static "deps/favicon/favicon-32x32.png" %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static "deps/favicon/favicon-16x16.png" %}">
     <link rel="manifest" href="{% static "deps/favicon/site.webmanifest" %}">
@@ -21,15 +21,17 @@
     <!--превью whatsapp-->
 
 {% if product %}
+    <link rel="apple-touch-icon" sizes="180x180" href="https://33шарика.рф{{product.image.url}}">
     <meta property="og:title" content="{{product.name}}"/>
     <meta property="og:description" content="Доставка воздушных шаров по г.Красноярску" />
-    <link rel="image_src" href="https://33шарика.рф{{product.image.url}}">
-    {% comment %} <meta property="og:image" content="https://33шарика.рф{{product.image.url}}"/> {% endcomment %}
+    <meta property="og:image" content="https://33шарика.рф{{product.image.url}}"/>
+    {% comment %} <link rel="image_src" href="https://33шарика.рф{{product.image.url}}"> {% endcomment %}
 {% else %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "deps/favicon/apple-touch-icon.png" %}">
     <meta property="og:title" content="{{title}}"/>
     <meta property="og:description" content="Доставка воздушных шаров по г.Красноярску" />
-    <link rel="image_src" href="https://33шарика.рф/media/goods_images/set1_PVfFktO.jpg">
-    {% comment %} <meta property="og:image" content="https://33шарика.рф/media/goods_images/set1_PVfFktO.jpg"/> {% endcomment %}
+    <meta property="og:image" content="https://33шарика.рф/media/goods_images/set1_PVfFktO.jpg"/>
+    {% comment %} <link rel="image_src" href="https://33шарика.рф{{product.image.url}}"> {% endcomment %}
 {% endif %}
 
 </head>
