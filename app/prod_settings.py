@@ -8,7 +8,7 @@ SECRET_KEY = 'fgbdrt4564(6od=fgd345ds=+d*a3+m1i2kdo!i@g-iqgs465hfo5)g+bw$4bh'
 DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '185.177.219.252', 'xn--33-8kca3bm4bxd.xn--p1ai']
-#ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://xn--33-8kca3bm4bxd.xn--p1ai']
 
 DATABASES = {
     'default': {
