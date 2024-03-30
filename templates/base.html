@@ -27,6 +27,7 @@
             <link rel="image_src" href=" {{ request.scheme }}://{{ request.get_host }}{{product.image.url}}">
         {% else %}
             <link rel="image_src" href=" {{ request.scheme }}://{{ request.get_host }}{% static "deps/favicon/apple-touch-icon.png" %}">
+        {% endif %}
 {% else %}
     <meta property="og:title" content="{{title}}"/>
     <meta property="og:image" content=" {{ request.scheme }}://{{ request.get_host }}/media/goods_images/set1_PVfFktO.jpg"/>
