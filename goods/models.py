@@ -23,7 +23,7 @@ class BaseProducts(models.Model):
     price = models.DecimalField(default=0, decimal_places=0, max_digits=7, verbose_name='Цена')    
     class Meta:
         db_table = 'base_product'
-        verbose_name: str = 'Базовый товар'
+        verbose_name = 'Базовый товар'
         verbose_name_plural = 'Базовые товары'
         ordering = ("name",) 
     def __str__(self):
@@ -83,8 +83,11 @@ class Products(models.Model):
 
 class SetProduct(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
-    base_product = models.ForeignKey(BaseProducts, on_delete=models.CASCADE)
+    base_product = models.ForeignKey(BaseProducts, on_delete=models.CASCADE, verbose_name='Выберите товары:')
     quantity = models.PositiveIntegerField(verbose_name='Количество')
+    class Meta:
+        verbose_name = 'товар в набор.'
+        verbose_name_plural = 'Товары в наборе'
         
     def save(self, *args, **kwargs):
         super(SetProduct, self).save(*args, **kwargs)
