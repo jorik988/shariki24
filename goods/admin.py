@@ -9,18 +9,18 @@ from goods.models import BaseProducts, Categories, Products
 class CategoriesAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)} # поля для автозаполнения (здесь slug)
     list_display = ['name',] #указываем поля для отображения в админ панели
-#регистрируем таблицу Categories в админ панели
+
 
 @admin.register(BaseProducts)
 class CategoriesAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)} # поля для автозаполнения (здесь slug)
     list_display = ['name', 'description', 'image', 'price',] #указываем поля для отображения в админ панели
-#регистрируем таблицу Categories в админ панели
+
 
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
     # prepopulated_fields = {'slug':('name',)}
-    list_display = ['id', 'name', 'quantity', 'price', 'discount', 'image',] #указываем поля для отображения в админ панели
+    list_display = ['name', 'price', 'discount', 'image', 'quantity', 'id',] #указываем поля для отображения в админ панели
     list_editable = ['quantity', 'discount',] #поля с возможностью быстрого изменения
     search_fields = ['name', 'description', 'id'] #добавляем поиск 
     list_filter = ['quantity', 'price', 'discount','category'] #фильтрация
@@ -29,11 +29,11 @@ class ProductsAdmin(admin.ModelAdmin):
     fields = [
         "name",
         "category",    
-        "slug",
+        #"slug",
         "description",
         "image",
         #("price", "discount"),
-        "quantity",
+        #"quantity",
     ] 
     class Media:
         js = ('goods/prepopulate_name.js',)  # Для автозаполнения name
