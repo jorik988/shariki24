@@ -25,6 +25,7 @@ class BaseProducts(models.Model):
         db_table = 'base_product'
         verbose_name: str = 'Базовый товар'
         verbose_name_plural = 'Базовые товары'
+        ordering = ("name",) 
     def __str__(self):
         return f'{self.name}'
     
@@ -43,12 +44,8 @@ class Products(models.Model):
     price = models.DecimalField(default=0, decimal_places=0, max_digits=7, blank=True, null=True, verbose_name='Цена')
     discount = models.DecimalField(default=0, decimal_places=0, max_digits=4, blank=True, null=True, verbose_name='Скидка в %')
     quantity = models.PositiveIntegerField(default=999, verbose_name='Количество')
-    #category = models.ForeignKey(to=Categories, on_delete=models.PROTECT, verbose_name = 'Категория') #ForeignKey связывает товар с категорией
     category = models.ManyToManyField(to=Categories, verbose_name='Категории')
     base_products = models.ManyToManyField(to=BaseProducts, through='SetProduct')
-    #PROTECT запрет удаления категории пока в ней есть товары. 
-    #CASCADE товары удаляются вместе с категорией
-    #SET_DEFAULT, default= товарам будет присвоена категория по умолчанию
     class Meta:
         db_table = 'product'
         verbose_name = 'Товар'
