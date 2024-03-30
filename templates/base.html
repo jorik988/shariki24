@@ -13,25 +13,22 @@
     <!-- Стиль footer-a для главной страницы -->
     {% block css_footer_index %}{% endblock css_footer_index %}
     <!-- Favicons for different platforms -->
-    {% comment %} <link rel="apple-touch-icon" sizes="180x180" href="{% static "deps/favicon/apple-touch-icon.png" %}"> {% endcomment %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "deps/favicon/apple-touch-icon.png" %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static "deps/favicon/favicon-32x32.png" %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static "deps/favicon/favicon-16x16.png" %}">
     <link rel="manifest" href="{% static "deps/favicon/site.webmanifest" %}">
     <title>{{ title }}</title>
+    
     <!--превью whatsapp-->
-
 {% if product %}
-    <link rel="apple-touch-icon" sizes="180x180" href="https://33шарика.рф{{product.image.url}}">
     <meta property="og:title" content="{{product.name}}"/>
     <meta property="og:description" content="Доставка воздушных шаров по г.Красноярску" />
-    <meta property="og:image" content="https://33шарика.рф{{product.image.url}}"/>
-    {% comment %} <link rel="image_src" href="https://33шарика.рф{{product.image.url}}"> {% endcomment %}
+    {% comment %} <meta property="og:image" content="https://33шарика.рф{{product.image.url}}"/> {% endcomment %}
+    <link rel="image_src" href="{{ request.scheme }}://{{ request.get_host }}{{product.image.url}}"/>
 {% else %}
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static "deps/favicon/apple-touch-icon.png" %}">
     <meta property="og:title" content="{{title}}"/>
     <meta property="og:description" content="Доставка воздушных шаров по г.Красноярску" />
-    <meta property="og:image" content="https://33шарика.рф/media/goods_images/set1_PVfFktO.jpg"/>
-    {% comment %} <link rel="image_src" href="https://33шарика.рф{{product.image.url}}"> {% endcomment %}
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}media/goods_images/set1_PVfFktO.jpg"/>
 {% endif %}
 
 </head>
