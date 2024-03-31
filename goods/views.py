@@ -27,7 +27,7 @@ def catalog(request, category_slug=None):
         goods = goods.order_by(order_by) #если есть order_by и не выбран пункт по умолчанию - добавить фильтр (order_by)
     
 
-    paginator = Paginator(goods, 25) #отображать по 25 товаров из переменной goods
+    paginator = Paginator(goods, 50) #отображать по 50 товаров из переменной goods
     current_page = paginator.page(int(page))
 
     context = {
