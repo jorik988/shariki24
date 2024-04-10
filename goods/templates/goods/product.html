@@ -101,24 +101,31 @@
                     <p class="card-text">Цена: <strong >{{product.sell_price}} ₽</strong></p>
                 {% endif %}
                 <h5 class="card-title">{{product.name}}</h5> {% endcomment %}
+                
+                {% with total_base_product=product.setproduct_set.all|length %}
                 <p class="card-text">
                     {{product.description}}
-                    {% if product.price > 500 %}
+                    {% if total_base_product > 1 %}
                         <h6>В данный набор входит:</h6>
                         <ul>
                             {% for base_product in base_products %}
-                            <li>{{ base_product.name }} - Количество: {{ base_product.setproduct_set.first.quantity }}</li>
+                                {% if "Пакет" not in base_product.name %}
+                                    <li>{{ base_product.name }} - {{ base_product.setproduct_set.first.quantity }} шт.</li>
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     {% endif %}
                 </p>
+                {% endwith %}
                 <p class="product_id mt-3">id: {{ product.display_id }}</p>
+                
                 
                 {% comment %} <a href="{% url "cart:cart_add" %}" class="btn btn-dark add-to-cart"
                 data-product-id="{{product.id}}">
                 {% csrf_token %}
                 Добавить в корзину</a> {% endcomment %}
             </div>
+            <!--END Описание товара-->
         </div>
     </div>
 {% endblock content %}
