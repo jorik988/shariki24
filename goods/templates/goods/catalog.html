@@ -40,7 +40,7 @@
                                     {% if product.headline %} <!--добавили условие если используется поиск-->
                                         {{ product.headline }}
                                     {% else %}
-                                        {{ product.name|truncatechars:30 }}
+                                        {{ product.name|truncatechars:35 }}
                                     {% endif %}
                                 {% endautoescape %}
                             </p>
