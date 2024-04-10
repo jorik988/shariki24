@@ -70,8 +70,9 @@ class Products(models.Model):
         super(Products, self).save(*args, **kwargs)  # Сначала сохраняем экземпляр Products(или ошибка)
         
         total_price = sum(set_product.base_product.price * set_product.quantity for set_product in self.setproduct_set.all())
-        self.price = total_price
-            # Обновляем цена по количеству товаров в наборе
+        if len(self.setproduct_set.all()) > 0:
+            self.price = total_price
+            # Обновляем цена по количеству товаров в наборе (только если есть базовые товары)
 
         if self.name == "Набор №":
             self.name = f"Набор №{self.id}"

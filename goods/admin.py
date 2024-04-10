@@ -28,15 +28,15 @@ class ProductsAdmin(admin.ModelAdmin):
     filter_horizontal = ['category']  # Позволяет выбирать несколько категорий
     inlines = [SetProductInline]
     save_on_top = False
-    readonly_fields = ['product_photo', 'price']
+    readonly_fields = ['product_photo', ]
     fields = [
         "name",
         "category",    
         #"slug",
         "description",
-        ("price", "discount", "quantity",),
-        #("image", "product_photo",),
-        "image", "product_photo",
+        ("price", "discount"),
+        "image",
+        "product_photo",
         
     ]
     @admin.display(description="Изображение", ordering='content')
