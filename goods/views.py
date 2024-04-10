@@ -31,7 +31,7 @@ def catalog(request, category_slug=None):
     current_page = paginator.page(int(page))
 
     context = {
-        "title": "33шарика - Каталог",
+        "title": "мойшарик.рф - Каталог",
         "goods": current_page,
         "slug_url": category_slug, #для пагинации в catalog.html
         "is_category_page": True #для отображения нужных элементов только на странице каталога
@@ -43,7 +43,7 @@ def product(request, product_slug):
     product = Products.objects.get(slug=product_slug)
     base_products = product.base_products.all()
     context = {
-        "title": "33шарика.рф - Товар",
+        "title": "мойшарик.рф - Товар",
         "product": product,
         "base_products": base_products,
         

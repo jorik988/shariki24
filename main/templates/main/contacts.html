@@ -10,14 +10,14 @@
 {% endblock css_footer_index %}
 
 {% block content %}
-    <h2 class="mt-5 pt-5"><strong>{{ content }}</strong></h2>
-    <p class="mt-1 pt-1"><strong>{{ text_on_page }}</strong></p>
+    <h2 class="mt-5 pt-5"><strong>Наши контакты:</strong></h2>
+    <p class="mt-1 pt-1"><strong>{% include "text/text_contacts.html" %}</strong></p>
 {% endblock content %}
 
 {% block futer %}
     <footer class="py-4 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">г.Красноярск 8-983-467-91-45</p>
+            <p class="m-0 text-center text-white">{% include "text/futer_text.html" %}</p>
         </div>
     </footer>
 {% endblock futer %}

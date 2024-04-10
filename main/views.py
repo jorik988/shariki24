@@ -8,32 +8,26 @@ from django.shortcuts import render
 def index(request): #request содержит данные о запросе(инф о пользователе, куки и тд)
        
     context = {
-        'title': 'ШарикиНаДом - Главная',
-        'content': 'Магазин воздушных шаров ШарикиНаДом.РФ',
+        'title': 'мойшарик.рф - Главная',
+        'content': 'Магазин воздушных шаров МОЙШАРИК.РФ',
     }
     return render(request, 'main/index.html', context)
 # Ф-я представления или контроллер
 
 def about(request):
     context = {
-        'title': 'ШарикиНаДом - О нас',
-        'content': 'Информация о нас',
-        'text_on_page': 'Здесь будет информация о нас',
+        'title': 'мойшарик.рф - О нас',
     }
     return render(request, 'main/about.html', context)
 
 def contacts(request):
     context = {
-        'title': 'ШарикиНаДом - Контакты',
-        'content': 'Контакты',
-        'text_on_page': 'Здесь будет контактная информация.',
+        'title': 'мойшарик.рф - Контакты',
     }
     return render(request, 'main/contacts.html', context)
 
 def delivery(request):
     context = {
-        'title': 'ШарикиНаДом - Доставка',
-        'content': 'Доставка',
-        'text_on_page': 'Здесь будет информация о доставке',
+        'title': 'мойшарик.рф - Доставка',
     }
     return render(request, 'main/delivery.html', context)

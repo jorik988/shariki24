@@ -67,7 +67,7 @@ def create_order(request):
         form = CreateOrderForm(initial=initial)
 
     context = {
-        'title': 'Home - Оформление заказа',
+        'title': 'мойшарик.рф - Оформление заказа',
         'form': form,
         'order': True,
     }

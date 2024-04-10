@@ -32,7 +32,7 @@
 
 
                     <div class="d-block d-lg-none">
-                        <a href="https://wa.me/79834005505?text=Хочу заказать данный товар: https://33шарика.рф{% url "catalog:product" product.slug %}" class="btn btn-dark pt-1">
+                        <a href="https://wa.me/{% include "text/order_phone.html" %}?text=Хочу заказать данный товар: https://33шарика.рф{% url "catalog:product" product.slug %}" class="btn btn-dark pt-1">
                             {% csrf_token %}
                             
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-whatsapp me-1" viewBox="0 0 16 16">
@@ -40,7 +40,7 @@
                             </svg> Заказать
                         </a>
                         
-                        <a href="tel:+79834679145" class="btn btn-dark">
+                        <a href="tel:+{% include "text/order_phone.html" %}" class="btn btn-dark">
                             {% csrf_token %}
                             
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
@@ -50,20 +50,18 @@
                         
                         <p class="mt-3"><strong>Наборы на сайте это примеры работ, Вы всегда можете указать свои пожелания к заказу.</strong></p>
                         <p class="mb-0">Для заказа свяжитесь с нами по телефону:</p>
-                        <strong>+7(983)467-91-45</strong>
+                        <strong>{% include "text/phone_text.html" %}</strong>
                         <p class="mt-0 mb-0">и укажите номер интересующего товара.</p>
                     </div>
-                    
-                    
-                    
-                    
                     
                     
                     <div class="d-none d-lg-block">
                         <p class="mt-3"><strong>Наборы на сайте это примеры работ, Вы всегда можете указать свои пожелания к заказу.</strong></p>
                         <p class="mb-0">Для заказа свяжитесь с нами по телефону:</p>
-                        <strong>+7(983)467-91-45</strong>
-                        <p class="mt-0 mb-0">и укажите номер интересующего товара.</p>
+                        <p class="mt-0 mb-0"><strong>{% include "text/phone_text.html" %}</strong> и укажите номер интересующего товара.</p>
+                        <br>
+                        <p class="mt-0 mb-0">Так же вы можете открыть сайт с мобильного устройства 
+                            и здесь появится кнопка для быстрого заказа через <strong>Whatsapp</strong>.</p>
                     </div>
 
 
@@ -77,7 +75,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="imageModal1Label">Изображение 1</h5>
+                                <h5 class="modal-title" id="imageModal1Label">{{product.name}}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Закрыть"></button>
                             </div>
