@@ -15,7 +15,7 @@ class CategoriesAdmin(admin.ModelAdmin):
 @admin.register(BaseProducts)
 class CategoriesAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)} # поля для автозаполнения (здесь slug)
-    list_display = ['name', 'description', 'image', 'price',] #указываем поля для отображения в админ панели
+    list_display = ['name', 'price', 'image', 'description',] #указываем поля для отображения в админ панели
 
 
 @admin.register(Products)
@@ -27,12 +27,12 @@ class ProductsAdmin(admin.ModelAdmin):
     list_filter = ['quantity', 'price', 'discount','category'] #фильтрация
     filter_horizontal = ['category']  # Позволяет выбирать несколько категорий
     inlines = [SetProductInline]
-    save_on_top = False
+    save_on_top = True
     readonly_fields = ['product_photo', ]
     fields = [
         "name",
         "category",    
-        #"slug",
+        "slug",
         "description",
         ("price", "discount"),
         "image",
