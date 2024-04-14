@@ -41,7 +41,7 @@ def catalog(request, category_slug=None):
 def product(request, product_slug):
     
     product = Products.objects.get(slug=product_slug)
-    base_products = product.base_products.all()
+    base_products = product.base_products.all().order_by('id')
     total_base_product = base_products.count()
     context = {
         "title": "мойшарик.рф - Товар",
