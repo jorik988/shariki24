@@ -42,16 +42,12 @@ def product(request, product_slug):
     
     product = Products.objects.get(slug=product_slug)
     base_products = product.base_products.all()
+    total_base_product = base_products.count()
     context = {
         "title": "мойшарик.рф - Товар",
         "product": product,
         "base_products": base_products,
-        
+        "total_base_product": total_base_product,
         
     }
     return render(request, "goods/product.html", context=context)
-
-
-# def get_product_id(request):
-#     product_id = get_max_id()
-#     return HttpResponse(str(product_id))

@@ -102,20 +102,21 @@
                 {% endif %}
                 <h5 class="card-title">{{product.name}}</h5> {% endcomment %}
                 
-                {% with total_base_product=product.setproduct_set.all|length %}
+                {% comment %} {% with total_base_product=product.setproduct_set.all|length %} {% endcomment %}
                 <p class="card-text">
                     {{product.description}}
                     {% if total_base_product > 1 %}
                         <h6>В данный набор входит:</h6>
                         <ul>
                             {% for base_product in base_products %}
+                                {% if "Пакет" not in base_product.name %}
                                     <li>{{ base_product.name }} - {{ base_product.setproduct_set.first.quantity }} шт.</li>
-                               
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     {% endif %}
                 </p>
-                {% endwith %}
+                {% comment %} {% endwith %} {% endcomment %}
                 <p class="product_id mt-3">id: {{ product.display_id }}</p>
                 
                 
