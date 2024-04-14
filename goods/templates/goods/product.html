@@ -108,9 +108,9 @@
                     {% if total_base_product > 1 %}
                         <h6>В данный набор входит:</h6>
                         <ul>
-                            {% for base_product in base_products %}
+                            {% for base_product, quantity in base_products_with_quantities %}
                                 {% if "Пакет" not in base_product.name %}
-                                    <li>{{ base_product.name }} - {{ base_product.setproduct_set.first.quantity }} шт.</li>
+                                    <li>{{ base_product.name }} - {{ quantity }} шт.</li>
                                 {% endif %}
                             {% endfor %}
                         </ul>

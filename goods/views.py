@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import get_list_or_404, render
-from goods.models import Products
+from goods.models import Products, SetProduct
 from goods.utils import  q_search
 
 # Create your views here.
@@ -43,11 +43,14 @@ def product(request, product_slug):
     product = Products.objects.get(slug=product_slug)
     base_products = product.base_products.all().order_by('name')
     total_base_product = base_products.count()
+    base_products_with_quantities = [(bp, SetProduct.objects.filter(product=product, base_product=bp).first().quantity) for bp in base_products]
+    
     context = {
         "title": "мойшарик.рф - Товар",
         "product": product,
-        "base_products": base_products,
+        #"base_products": base_products,
         "total_base_product": total_base_product,
+        "base_products_with_quantities": base_products_with_quantities
         
     }
     return render(request, "goods/product.html", context=context)
