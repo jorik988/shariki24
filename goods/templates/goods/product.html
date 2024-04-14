@@ -110,7 +110,7 @@
                         <ul>
                             {% for base_product in base_products %}
                                 {% if "Пакет" not in base_product.name %}
-                                    <li>{{ base_product.name }} - {{ base_product.setproduct_set.first.quantity }} шт.</li>
+                                    <li>{{ base_product.name }} - {{ base_product.setproduct_set.all.0.quantity }} шт.</li>
                                 {% endif %}
                             {% endfor %}
                         </ul>
